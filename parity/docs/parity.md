@@ -27,7 +27,7 @@ Top module named _parity_compute_ located at file `../src/parity_compute.sv`.
 At file `../inc/parity_types_pkg.sv` is found the enum used for parity_t type.
 
 ### Test
-test cases idk
+test cases wip
 
 ## Parity Checking
 
@@ -50,7 +50,7 @@ Top module named _parity_check_ located at file `../src/parity_check.sv`.
 At file `../inc/parity_types_pkg.sv` is found the enum used for parity_t type.
 
 ### Test
-test cases idk
+test cases wip
 
 ## Example use
 
