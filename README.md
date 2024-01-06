@@ -7,7 +7,7 @@ In each module you may found 4 folders:
 </br>
 `src/`: Contains the source code of the top module.
 </br>
-`test/`: Contains the testbench for the module.
+`test/`: Contains the testbench for the top module.
 </s>
 
 Modules under development:
@@ -17,10 +17,12 @@ Modules under development:
 - `bin-bcd`: Binary to BCD decoder.
 - `crc`: Hardware CRC calculator.
 - `decoder`: 2-to-4, 3-to-8, 4-to-16 decoders.
+- `dpll`: Digital Phase Locked Loop.
 - `encoder`: 4-to-2, 8-to-3, 16-to-4 encoders.
 - `fifo`: FIFO memory buffer.
 - `gpio`: General purpose I/O controller.
 - `i2c`: I2C master and slave controllers.
+- `i2s`: I2S master and slave controllers.
 - `lifo`: LIFO memory buffer.
 - `parity`: Simple parity calculation and checking.
 - `pwm`: PWM controller.
@@ -29,8 +31,10 @@ Modules under development:
 - `simple_risc_processor`: Simple RISC-like processing unit.
 - `spi`: SPI master and slave controller.
 - `timer`: Simple general purpose timer module.
-- `uart`: UART transmitter and receiver.
+- `uart`: UART transmitter and receiver module.
 
 To use any of these modules just include them into your project by adding their header file (.sv) into your compilation list.</s>
 
-If you want to request a new module, find a bug or ask a question about any of this modules, open a issue in the Issues Tab of the Repository!
+You can test any of this modules in [EDA Playground](https://www.edaplayground.com) by copying the source and include files, alongside with the top module testbench.
+
+If you want to request a new module, report new a bug or ask a question about any of this modules, open a issue in the Issues Tab of the Repository!
