@@ -3,7 +3,7 @@ Modules to compute and check simple parity for the given data input, parity can 
 - `EVEN`: The module will compute Even parity (the number of bits set in the frame should be even, including the parity bit).
 - `ODD`: The module will compute Odd parity (the number of bits set in the frame should be odd, including the parity bit).
 - `MARK`: The module will compute Mark parity (parity bit will be set always to 1, no matter the data).
-- `SPACE`: The module will compute Space parity (parity bit will be set always to 0, no matter tha data).
+- `SPACE`: The module will compute Space parity (parity bit will be set always to 0, no matter the data).
 - `NONE`: No parity will be computed. Output will return 0.
 
 ## Parity Computing
@@ -52,10 +52,10 @@ At file `../inc/parity_types_pkg.sv` is found the enum used for parity_t type.
 ### Test
 test cases wip
 
-## Example use
+## Use cases
 
-Imagine you are sending and receiving data via a 5 bit UART with a device that has `ODD` parity, to compute sent parity you have to follow this steps:
-- Instantiate the `parity_compute` module with the `BITWIDTH` parameter set to 5 (this step can be omitted if `BITWIDTH` is set to 8).
+Suppose a 5-bit UART transmission device with `ODD` parity. To compute the parity of a message, the following steps are needed:
+- Instantiate the `parity_compute` module with the `BITWIDTH` parameter set to 5 (this step can be omitted if `BITWIDTH` is same as default one).
 - Set the parity type to `ODD` with the provided enum type.
 - Send the paralel frame data to the `dataIn` port.
 - Concatenate your initial data with the `parityOut` result (this step should be omitted if `NONE` parity is selected).

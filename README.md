@@ -1,7 +1,7 @@
 # Common RTL modules written in SystemVerilog
-In each module you may found 4 folders:
+In each module you may find 4 folders:
 </br>
-`docs/`: Contains the documentation of the top module, what inputs/outputs exist and how they work
+`docs/`: Contains the documentation of the top module, what inputs/outputs exist and how they work.
 </br>
 `inc/`: Contains the extra files (submodules or packages) used in that top module, if no extra files are used on the top module, this folder will not appear. If one module from this repo uses another one, the file(s) will be copied into the destination `inc/` folder.
 </br>
