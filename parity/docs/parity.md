@@ -18,7 +18,7 @@ Top module named _parity_compute_ located at file `../src/parity_compute.sv`.
 
 ### Module Inputs/Outputs
 | Direction | Name | Type | Description |
-| :---: | :---: | :---: | :---:|
+| :---: | :---: | :---: | :---: |
 | `INPUT` | `dataIn` | logic[`BITWIDTH`-1:0] | Binary data to compute parity |
 | `INPUT` | `parityType` | `parity_t` | Type of parity to compute |
 | `OUTPUT` | `parityOut` | logic | Computed parity bit |

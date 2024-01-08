@@ -1,3 +1,12 @@
+//=================================================================================
+//
+// Description    : Template for description
+// Author         : Adria Babiano
+// Created        : Dec 30 2023
+//
+//=================================================================================
+
+
 module parity_compute
     import parity_types_pkg::*;
     #(
