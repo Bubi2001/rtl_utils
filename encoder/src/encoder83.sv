@@ -1,6 +1,6 @@
 //=================================================================================
 //
-// Description    : Template for description
+// Description    : 8-to-3 Encoder
 // Author         : Adria Babiano
 // Created        : Jan 07 2024
 //

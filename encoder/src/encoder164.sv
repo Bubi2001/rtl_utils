@@ -1,6 +1,6 @@
 //=================================================================================
 //
-// Description    : Template for description
+// Description    : 16-to-4 Encoder
 // Author         : Adria Babiano
 // Created        : Jan 07 2024
 //
