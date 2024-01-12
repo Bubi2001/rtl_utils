@@ -1,80 +1,146 @@
 `timescale 1ns/1ps
 `define DELAY 2
-`define CLK_HALFPERIOD 10
 
 module decoder_tb();
 	// input output signals for the DUT
+	reg [1:0] dataIn1;
+	reg [2:0] dataIn2;
+	reg [3:0] dataIn3;
+	wire [3:0] oneHot1;
+	wire [7:0] oneHot2;
+	wire [15:0] oneHot3;
+	wire [3:0] oneCold1;
+	wire [7:0] oneCold2;
+	wire [15:0] oneCold3;
 	// test signals
-	integer addr2wwrite
-	integer data2write;
 	integer errors; // Accumulated errors during the simulation
-	integer vExpected; // expected value
-	integer vObtained; // obtained value
+	integer vExpectedp; // expected value
+	integer vExpectedn;
+	integer vObtainedp; // obtained value
+	integer vObtainedn;
 	//___________________________________________________________________________
-	// Instantiation of the module to be verified
-	decoder dut();
-	// 50 MHz clk generation
-	initial clk=1'b0;
-	always #`CLK_HALFPERIOD clk = ~clk;
-	// Basic tasks
-	// Synchronous output check
-	task syncCheck;
-		begin
-			waitClk;
-			if(vExpected!=vObtained) begin
-				$display("[Error! %t] The value is %h and should be %h",$time,vObtained,vExpected);
-				errors=errors+1;
-			end else begin
-				$display("[Info- %t] Successful check at time",$time);
-			end
+	// Instantiation of the modules to be verified
+	decoder24 dut1(
+		.dataIn(dataIn1),
+		.oneHot(oneHot1),
+		.oneCold(oneCold1)
+	);
+
+	decoder38 dut2(
+		.dataIn(dataIn2),
+		.oneHot(oneHot2),
+		.oneCold(oneCold2)
+	);
+
+	decoder416 dut3(
+		.dataIn(dataIn3),
+		.oneHot(oneHot3),
+		.oneCold(oneCold3)
+	);
+	//__________________________________________________________________________
+	// Initial state
+	initial begin
+		dataIn1 <= 2'b00;
+		dataIn2 <= 3'b000;
+		dataIn3 <= 4'b0000;
+	end
+	//__________________________________________________________________________
+	// Test vectors
+	initial begin
+		$timeformat(-9,2," ns",10);
+		errors = 0;
+		//decoder24
+		for (int i = 0; i < 4; i++) begin
+			vExpectedp = 0;
+			vExpectedn = 0;
+			dataIn1 <= i;
+			vExpectedp = 1 << i;
+			vExpectedn = 32'h0000000F & (~vExpectedp);
+			#`DELAY;
+			vObtainedp = oneHot1;
+			vObtainedn = oneCold1;
+			asyncCheckp;
+			asyncCheckn;
 		end
-	endtask
+		//decoder38
+		for (int i = 0; i < 8; i++) begin
+			vExpectedp = 0;
+			vExpectedn = 0;
+			dataIn2 <= i;
+			vExpectedp = 1 << i;
+			vExpectedn = 32'h000000FF & (~vExpectedp);
+			#`DELAY;
+			vObtainedp = oneHot2;
+			vObtainedn = oneCold2;
+			asyncCheckp;
+			asyncCheckn;
+		end
+		//decoder416
+		for (int i = 0; i < 16; i++) begin
+			vExpectedp = 0;
+			vExpectedn = 0;
+			dataIn3 <= i;
+			vExpectedp = 1 << i;
+			vExpectedn = 32'h0000FFFF & (~vExpectedp);
+			#`DELAY;
+			vObtainedp = oneHot3;
+			vObtainedn = oneCold3;
+			asyncCheckp;
+			asyncCheckn;
+		end
+		checkErrors;
+	end
+	// Basic tasks
 	// Asynchronous output check
-	task asyncCheck;
+	task asyncCheckp;
 		begin
 			#`DELAY;
-			if(vExpected!=vObtained) begin
-				$display("[Error! %t] The value is %h and should be %h",$time,vObtained,vExpected);
+			if(vExpectedp!=vObtainedp) begin
+				$display("[Error! %t] The value is %h and should be %h",$time,vObtainedp,vExpectedp);
 				errors=errors+1;
 			end else begin
 				$display("[Info- %t] Successful check",$time);
 			end
 		end
 	endtask
-	// generation of reset pulse
-	task resetDUT;
+	task asyncCheckn;
 		begin
-			$display("[Info- %t] Reset",$time);
-			rst_n=1'b0;
-			waitCycles(3);
-			rst_n=1'b1;
-		end
-	endtask
-	// wait for N clock cycles
-	task waitCycles;
-		input[31:0] Ncycles;
-		begin
-			repeat(Ncycles) begin
-				waitClk;
+			#`DELAY;
+			if(vExpectedn!=vObtainedn) begin
+				$display("[Error! %t] The value is %h and should be %h",$time,vObtainedn,vExpectedn);
+				errors=errors+1;
+			end else begin
+				$display("[Info- %t] Successful check",$time);
 			end
 		end
-	endtask
-	// wait the next posedge clock
-	task waitClk;
-		begin
-			@(posedge clk);
-				#`DELAY;
-		end //begin
 	endtask
 	// Check for errors during the simulation
 	task checkErrors;
 		begin
-			if(errors==0) begin
-				$display("********** TEST PASSED **********");
-			end else begin
-				$display("********** TEST FAILED **********");
-			end
-		end
+            if (errors == 0) begin
+                $display("\n");
+                $display("         _\\|/_");
+                $display("         (o o)");
+                $display(" +----oOO-{_}-OOo--------------------------------------------------------------+");
+                $display(" |                                 TEST PASSED                                 |");
+                $display(" +-----------------------------------------------------------------------------+");
+                $display ("\n");
+            end else begin
+                $display("\n");
+                $display("                              _ ._  _ , _ ._");
+                $display("                            (_ ' ( `  )_  .__)");
+                $display("                          ( (  (    )   `)  ) _)");
+                $display("                         (__ (_   (_ . _) _) ,__)");
+                $display("                             `~~`\\ ' . /`~~`");
+                $display("                             ,::: ;   ; :::,");
+                $display("                            ':::::::::::::::'");
+                $display(" ________________________________/_____\\________________________________");
+                $display("|                                                                       |");
+                $display("|                              TEST FAILED                              |");
+                $display("|_______________________________________________________________________|");
+                $display("\n");
+            end
+        end
 	endtask
 
 endmodule

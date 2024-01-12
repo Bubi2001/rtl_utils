@@ -1,6 +1,6 @@
 //=================================================================================
 //
-// Description    : Template for description
+// Description    : 4-to-16 Decoder
 // Author         : Adria Babiano
 // Created        : Jan 07 2024
 //
@@ -8,8 +8,11 @@
 
 module decoder416 (
 	input logic [3:0] dataIn,
-	output logic [15:0] dataOut
+	output logic [15:0] oneHot,
+	output logic [15:0] oneCold
 	);
+
+	logic [15:0] dataOut;
 
 	always_comb begin
 		case (dataIn)
@@ -32,5 +35,8 @@ module decoder416 (
 			default: 		dataOut = 16'h0000;
 		endcase
 	end
+
+	assign oneHot = dataOut;
+	assign oneCold = ~dataOut;
 
 endmodule

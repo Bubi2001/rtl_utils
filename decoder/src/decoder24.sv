@@ -1,6 +1,6 @@
 //=================================================================================
 //
-// Description    : Template for description
+// Description    : 2-to-4 Decoder
 // Author         : Adria Babiano
 // Created        : Jan 07 2024
 //
@@ -8,8 +8,11 @@
 
 module decoder24 (
 	input logic [1:0] dataIn,
-	output logic [3:0] dataOut
+	output logic [3:0] oneHot,
+	output logic [3:0] oneCold
 	);
+
+	logic [3:0] dataOut;
 
 	always_comb begin
 		case (dataIn)
@@ -20,5 +23,8 @@ module decoder24 (
 			default: 		dataOut = 4'h0;
 		endcase
 	end
+
+	assign oneHot = dataOut;
+	assign oneCold = ~dataOut;
 
 endmodule

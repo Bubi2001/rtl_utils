@@ -1,6 +1,6 @@
 //=================================================================================
 //
-// Description    : Template for description
+// Description    : 3-to-8 Decoder
 // Author         : Adria Babiano
 // Created        : Jan 07 2024
 //
@@ -8,8 +8,11 @@
 
 module decoder38 (
 	input logic [2:0] dataIn,
-	output logic [7:0] dataOut
+	output logic [7:0] oneHot,
+	output logic [7:0] oneCold
 	);
+
+	logic [7:0] dataOut;
 
 	always_comb begin
 		case (dataIn)
@@ -24,5 +27,8 @@ module decoder38 (
 			default: 		dataOut = 8'h0;
 		endcase
 	end
+
+	assign oneHot = dataOut;
+	assign oneCold = ~dataOut;
 
 endmodule
