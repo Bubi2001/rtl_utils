@@ -17,7 +17,6 @@ Modules under development:
 - [bin_bcd](https://github.com/Bubi2001/rtl_utils/tree/module/bin_bcd): Binary to BCD decoder.
 - [crc](https://github.com/Bubi2001/rtl_utils/tree/module/crc): Hardware CRC calculator.
 - [dpll](https://github.com/Bubi2001/rtl_utils/tree/module/dpll): Digital Phase Locked Loop.
-- [encoder](https://github.com/Bubi2001/rtl_utils/tree/module/encoder): 4-to-2, 8-to-3, 16-to-4 encoders.
 - [fifo](https://github.com/Bubi2001/rtl_utils/tree/module/fifo): FIFO memory buffer.
 - [gpio](https://github.com/Bubi2001/rtl_utils/tree/module/gpio): General purpose I/O controller.
 - [i2c](https://github.com/Bubi2001/rtl_utils/tree/module/i2c): I2C master and slave controllers.
