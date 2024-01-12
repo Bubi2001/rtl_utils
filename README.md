@@ -16,7 +16,6 @@ Modules under development:
 - [alu](https://github.com/Bubi2001/rtl_utils/tree/module/alu): Basic ALU with parametrable bitwidths.
 - [bin_bcd](https://github.com/Bubi2001/rtl_utils/tree/module/bin_bcd): Binary to BCD decoder.
 - [crc](https://github.com/Bubi2001/rtl_utils/tree/module/crc): Hardware CRC calculator.
-- [decoder](https://github.com/Bubi2001/rtl_utils/tree/module/decoder): 2-to-4, 3-to-8, 4-to-16 decoders.
 - [dpll](https://github.com/Bubi2001/rtl_utils/tree/module/dpll): Digital Phase Locked Loop.
 - [encoder](https://github.com/Bubi2001/rtl_utils/tree/module/encoder): 4-to-2, 8-to-3, 16-to-4 encoders.
 - [fifo](https://github.com/Bubi2001/rtl_utils/tree/module/fifo): FIFO memory buffer.
@@ -24,6 +23,7 @@ Modules under development:
 - [i2c](https://github.com/Bubi2001/rtl_utils/tree/module/i2c): I2C master and slave controllers.
 - [i2s](https://github.com/Bubi2001/rtl_utils/tree/module/i2s): I2S master and slave controllers.
 - [lifo](https://github.com/Bubi2001/rtl_utils/tree/module/lifo): LIFO memory buffer.
+- [one_wire](https://github.com/Bubi2001/rtl_utils/tree/module/one_wire): One-Wire master and slave module.
 - [parity](https://github.com/Bubi2001/rtl_utils/tree/module/parity): Simple parity calculation and checking.
 - [pwm](https://github.com/Bubi2001/rtl_utils/tree/module/pwm): PWM controller.
 - [register_file](https://github.com/Bubi2001/rtl_utils/tree/module/register_file): Simple Register Bank.
