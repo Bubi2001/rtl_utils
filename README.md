@@ -1,4 +1,4 @@
-# Common RTL modules written in SystemVerilog
+# RTL modules written in SystemVerilog
 In each module you may find 4 folders:
 </br>
 `docs/`: Contains the documentation of the top module, what inputs/outputs exist and how they work.
@@ -26,7 +26,6 @@ Modules under development:
 - [parity](https://github.com/Bubi2001/rtl_utils/tree/module/parity): Simple parity calculation and checking.
 - [pwm](https://github.com/Bubi2001/rtl_utils/tree/module/pwm): PWM controller.
 - [register_file](https://github.com/Bubi2001/rtl_utils/tree/module/register_file): Simple Register Bank.
-- [shift_register](https://github.com/Bubi2001/rtl_utils/tree/module/shift_register): Shift register with parametrable size.
 - [simple_risc_processor](https://github.com/Bubi2001/rtl_utils/tree/module/simple_risc_processor): Simple RISC-like processing unit.
 - [spi](https://github.com/Bubi2001/rtl_utils/tree/module/spi): SPI master and slave controller.
 - [timer](https://github.com/Bubi2001/rtl_utils/tree/module/timer): Simple general purpose timer module.
