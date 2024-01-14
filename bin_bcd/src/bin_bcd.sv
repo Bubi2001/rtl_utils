@@ -1,24 +1,25 @@
 //=================================================================================
 //
-// Description    : Template for description
+// Description    : Binary to BCD converter
 // Author         : Adria Babiano
 // Created        : Jan 09 2024
 //
 //=================================================================================
 
-module bin2bcd #( 
-	parameter W = 32												// input width
+module bin_bcd #( 
+	parameter WIDTH = 32													// input width
 	)(
-	input logic[W-1:0] Bin,  										// Binary
-	output logic[(W+(W-4)/3):0] Bcd 								// Bcd {...,thousands,hundreds,tens,ones}
+	input logic[WIDTH-1:0] bin,  											// Binary
+	output logic[(WIDTH+(WIDTH-4)/3):0] bcd 								// Bcd {...,thousands,hundreds,tens,ones}
 	); 
 	integer i,j;
-	always @(Bin) begin
-		for(i = 0; i <= W+(W-4)/3; i++) Bcd[i] = 0;					// initialize with zeros
-		Bcd[W-1:0] = Bin;                                   		// initialize with input vector
-		for(i = 0; i <= W-4; i = i+1)                       		// iterate on structure depth
-			for(j = 0; j <= i/3; j = j+1)                     		// iterate on structure width
-				if (Bcd[W-i+4*j -: 4] > 4)                      	// if > 4
-					Bcd[W-i+4*j -: 4] = Bcd[W-i+4*j -: 4] + 4'd3; 	// add 3
+	always_comb begin
+		for(i = 0; i <= WIDTH+(WIDTH-4)/3; i++) bcd[i] = 0;					// initialize with zeros
+		bcd[WIDTH-1:0] = bin;                                   			// initialize with input vector
+		for(i = 0; i <= WIDTH-4; i = i+1)                       			// iterate on structure depth
+			for(j = 0; j <= i/3; j = j+1)                     				// iterate on structure width
+				if (bcd[WIDTH-i+4*j -: 4] > 4)                 		     	// if > 4
+					bcd[WIDTH-i+4*j -: 4] = bcd[WIDTH-i+4*j -: 4] + 4'd3; 	// add 3
 	end
 endmodule
+

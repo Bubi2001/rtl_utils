@@ -7,22 +7,35 @@
 //=================================================================================
 `timescale 1ns/1ps
 `define DELAY 2
-`define CLK_HALFPERIOD 10
 
 module bin_bcd_tb();
 	// input output signals for the DUT
+	reg [31:0] bin;
+	wire [39:0] bcd;
 	// test signals
-	integer addr2wwrite
 	integer data2write;
 	integer errors; // Accumulated errors during the simulation
 	integer vExpected; // expected value
 	integer vObtained; // obtained value
 	//___________________________________________________________________________
 	// Instantiation of the module to be verified
-	bin_bcd dut();
-	// 50 MHz clk generation
-	initial clk=1'b0;
-	always #`CLK_HALFPERIOD clk = ~clk;
+	bin_bcd #(.WIDTH(32)) dut(
+		.bin(bin),
+		.bcd(bcd)
+	);
+	//___________________________________________________________________________
+	// signals and vars initialization
+	initial begin
+		bin <= 'd0;
+	end
+	//___________________________________________________________________________
+	// Test Vectors
+	initial begin
+		$timeformat(-9,2," ns",10); // format for the time print
+
+		
+	end
+	//___________________________________________________________________________
 	// Basic tasks
 	// Synchronous output check
 	task syncCheck;
@@ -48,40 +61,33 @@ module bin_bcd_tb();
 			end
 		end
 	endtask
-	// generation of reset pulse
-	task resetDUT;
-		begin
-			$display("[Info- %t] Reset",$time);
-			rst_n=1'b0;
-			waitCycles(3);
-			rst_n=1'b1;
-		end
-	endtask
-	// wait for N clock cycles
-	task waitCycles;
-		input[31:0] Ncycles;
-		begin
-			repeat(Ncycles) begin
-				waitClk;
-			end
-		end
-	endtask
-	// wait the next posedge clock
-	task waitClk;
-		begin
-			@(posedge clk);
-				#`DELAY;
-		end //begin
-	endtask
 	// Check for errors during the simulation
 	task checkErrors;
 		begin
-			if(errors==0) begin
-				$display("********** TEST PASSED **********");
-			end else begin
-				$display("********** TEST FAILED **********");
+            if (errors == 0) begin
+                $display("\n");
+                $display("         _\\|/_");
+                $display("         (o o)");
+                $display(" +----oOO-{_}-OOo--------------------------------------------------------------+");
+                $display(" |                                 TEST PASSED                                 |");
+                $display(" +-----------------------------------------------------------------------------+");
+                $display ("\n");
+            end else begin
+                $display("\n");
+                $display("                              _ ._  _ , _ ._");
+                $display("                            (_ ' ( `  )_  .__)");
+                $display("                          ( (  (    )   `)  ) _)");
+                $display("                         (__ (_   (_ . _) _) ,__)");
+                $display("                             `~~`\\ ' . /`~~`");
+                $display("                             ,::: ;   ; :::,");
+                $display("                            ':::::::::::::::'");
+                $display(" ________________________________/_____\\________________________________");
+                $display("|                                                                       |");
+                $display("|                              TEST FAILED                              |");
+                $display("|_______________________________________________________________________|");
+                $display("\n");
 			end
 		end
 	endtask
-
 endmodule
+
