@@ -1,3 +1,10 @@
+//=================================================================================
+//
+// Description    : Decoder testbench
+// Author         : Adria Babiano
+// Created        : Jan 07 2024
+//
+//=================================================================================
 `timescale 1ns/1ps
 `define DELAY 2
 
@@ -21,21 +28,21 @@ module decoder_tb();
 	//___________________________________________________________________________
 	// Instantiation of the modules to be verified
 	decoder24 dut1(
-		.dataIn(dataIn1),
-		.oneHot(oneHot1),
-		.oneCold(oneCold1)
+		.dataIn		(dataIn1),
+		.oneHot		(oneHot1),
+		.oneCold	(oneCold1)
 	);
 
 	decoder38 dut2(
-		.dataIn(dataIn2),
-		.oneHot(oneHot2),
-		.oneCold(oneCold2)
+		.dataIn		(dataIn2),
+		.oneHot		(oneHot2),
+		.oneCold	(oneCold2)
 	);
 
 	decoder416 dut3(
-		.dataIn(dataIn3),
-		.oneHot(oneHot3),
-		.oneCold(oneCold3)
+		.dataIn		(dataIn3),
+		.oneHot		(oneHot3),
+		.oneCold	(oneCold3)
 	);
 	//__________________________________________________________________________
 	// Initial state

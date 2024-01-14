@@ -1,3 +1,10 @@
+//=================================================================================
+//
+// Description    : Encoder testbench
+// Author         : Adria Babiano
+// Created        : Jan 07 2024
+//
+//=================================================================================
 `timescale 1ns/1ps
 `define DELAY 2
 
@@ -16,18 +23,18 @@ module encoder_tb();
 	//___________________________________________________________________________
 	// Instantiation of the modules to be verified
 	decoder24 dut1(
-		.dataIn(dataIn1),
-		.dataOut(dataOut1)
+		.dataIn		(dataIn1),
+		.dataOut	(dataOut1)
     );
 
 	decoder38 dut2(
-		.dataIn(dataIn2),
-		.dataOut(DataOut2)
+		.dataIn		(dataIn2),
+		.dataOut	(DataOut2)
 	);
 
 	decoder416 dut3(
-		.dataIn(dataIn3),
-		.dataOut(dataOut3)
+		.dataIn		(dataIn3),
+		.dataOut	(dataOut3)
     );
 	//__________________________________________________________________________
 	// Initial state

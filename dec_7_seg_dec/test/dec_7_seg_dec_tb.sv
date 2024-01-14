@@ -48,7 +48,7 @@ module dec_7_seg_dec_tb();
 				3:			vExpectedp[6:0] = 7'b0000110;
 				4:			vExpectedp[6:0] = 7'b1001100;
 				5:			vExpectedp[6:0] = 7'b0100100;
-				6:			vExpectedp[6:0] = 7'b1100000;
+				6:			vExpectedp[6:0] = 7'b0100000;
 				7:			vExpectedp[6:0] = 7'b0001111;
 				8:			vExpectedp[6:0] = 7'b0000000;
 				9:			vExpectedp[6:0] = 7'b0001100;

@@ -22,7 +22,7 @@ module dec_7_seg_dec (
 			4'h3:		segments = 7'b0000110;
 			4'h4:		segments = 7'b1001100;
 			4'h5:		segments = 7'b0100100;
-			4'h6:		segments = 7'b1100000;
+			4'h6:		segments = 7'b0100000;
 			4'h7:		segments = 7'b0001111;
 			4'h8:		segments = 7'b0000000;
 			4'h9:		segments = 7'b0001100;

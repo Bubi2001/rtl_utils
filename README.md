@@ -11,8 +11,6 @@ In each module you may find 4 folders:
 </s>
 
 Modules under development:
-- [7_seg_dec](https://github.com/Bubi2001/rtl_utils/tree/module/7_seg_dec): Decoder from BCD to 7 segments display.
-- [7_seg_hex](https://github.com/Bubi2001/rtl_utils/tree/module/7_seg_hex): Decoder that takes a nibble and return the 7 segments display of the hex number inputted.
 - [alu](https://github.com/Bubi2001/rtl_utils/tree/module/alu): Basic ALU with parametrable bitwidths.
 - [bin_bcd](https://github.com/Bubi2001/rtl_utils/tree/module/bin_bcd): Binary to BCD decoder.
 - [crc](https://github.com/Bubi2001/rtl_utils/tree/module/crc): Hardware CRC calculator.
