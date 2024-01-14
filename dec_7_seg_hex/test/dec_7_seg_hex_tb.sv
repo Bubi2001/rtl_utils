@@ -121,5 +121,4 @@ module dec_7_seg_hex_tb();
 			end
 		end
 	endtask
-
 endmodule

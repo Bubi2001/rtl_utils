@@ -118,5 +118,4 @@ module encoder_tb();
             end
         end
 	endtask
-
 endmodule

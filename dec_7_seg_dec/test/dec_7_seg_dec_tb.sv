@@ -115,5 +115,4 @@ module dec_7_seg_dec_tb();
 			end
 		end
 	endtask
-
 endmodule

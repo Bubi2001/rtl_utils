@@ -149,5 +149,4 @@ module decoder_tb();
             end
         end
 	endtask
-
 endmodule
