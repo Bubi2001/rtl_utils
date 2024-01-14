@@ -1,12 +1,12 @@
 //=================================================================================
 //
-// Description    : BCD-to-7 segments decoder
+// Description    : BCD-to-7-segments decoder
 // Author         : Adria Babiano
 // Created        : Jan 09 2024
 //
 //=================================================================================
 
-module 7_seg_dec (
+module dec_7_seg_dec (
 	input logic [3:0] bcd,
 	output logic [6:0] segments_anode,
 	output logic [6:0] segments_cathode
