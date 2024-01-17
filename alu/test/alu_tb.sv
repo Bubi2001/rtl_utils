@@ -7,7 +7,6 @@
 //=================================================================================
 `timescale 1ns/1ps
 `define DELAY 2
-`define CLK_HALFPERIOD 10
 
 module alu_tb();
 	// input output signals for the DUT
