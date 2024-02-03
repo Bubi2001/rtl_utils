@@ -21,7 +21,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 //
-// Description    : Generic register file
+// Description    : Generic register file.
 // Author         : Adria Babiano
 // Created        : Jan 09 2024
 //
@@ -30,7 +30,7 @@
 module register_file
 	#(
 	parameter WORD_LENGTH = 8,
-	parameter REG_AMOUNT  = 8,
+	parameter REG_AMOUNT  = 8
 	)(
 	input logic clk,
 	input logic rst_n,
@@ -49,14 +49,16 @@ module register_file
 
 	always_ff @(posedge clk) begin
 		if (!rst_n) begin
-			reg_file <= 'd0;
+			for(int i = 0; i < REG_AMOUNT; i++) begin
+				reg_file[i] <= {WORD_LENGTH{1'b0}};
+            end
 		end else begin
 			if (wrEn) begin
 				reg_file[addrWrite] <= dataIn;
 			end
 			dataOut1 <= reg_file[addrRead1];
 			dataOut2 <= reg_file[addrRead2];
+			dataOut3 <= reg_file[addrRead3];
 		end
 	end
-
 endmodule
