@@ -21,49 +21,41 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 //
-// Description    : Arithmetic Logic Unit package.
+// Description    : Arithmetic Logic Unit defines for operations.
 // Author         : Adria Babiano
 // Created        : Jan 09 2024
 //
 //=================================================================================
 
-package alu_pkg;
-    typedef struct packed {
-        logic signFlag;
-        logic overflowFlag;
-        logic zeroFlag;
-        logic parityFlag;
-    } flags_t;
-
-    typedef enum logic [4:0] { ADD,
-                               SUBAB,
-                               SUBBA,
-                               MODAB,
-                               MODBA,
-                               NEGA,
-                               NEGB,
-                               INCA,
-                               INCB,
-                               DECA,
-                               DECB,
-                               PTA,
-                               PTB,
-                               SHLA,
-                               SHRA,
-                               SHLA2,
-                               SHRA2,
-                               SHLA3,
-                               SHRA3,
-                               SHLA4,
-                               SHRA4,
-                               RORA,
-                               ROLA,
-                               AND,
-                               OR,
-                               NAND,
-                               NOR,
-                               XOR,
-                               XNOR,
-                               INVA,
-                               INVB } ALUop_t;
-endpackage
+`define ADD 5'h00
+`define SUB 5'h01
+`define MOD 5'h02
+`define NEGA 5'h03
+`define INCA 5'h04
+`define DECA 5'h05
+`define PTA 5'h06
+`define ROLA 5'h07
+`define RORA 5'h08
+`define SHLA 5'h09
+`define SHLA2 5'h0a
+`define SHLA3 5'h0b
+`define SHLA4 5'h0c
+`define SHLA5 5'h0d
+`define SHLA6 5'h0e
+`define SHLA7 5'h0f
+`define SHLA8 5'h10
+`define SHRA 5'h11
+`define SHRA2 5'h12
+`define SHRA3 5'h13
+`define SHRA4 5'h14
+`define SHRA5 5'h15
+`define SHRA6 5`h16
+`define SHRA7 5'h17
+`define SHRA8 5'h18
+`define AND 5'h19
+`define OR 5'h1a
+`define NAND 5'h1b
+`define NOR 5'h1c
+`define XOR 5'h1d
+`define XNOR 5'h1e
+`define INVA 5'h1f

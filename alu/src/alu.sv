@@ -26,67 +26,58 @@
 // Created        : Jan 09 2024
 //
 //=================================================================================
+`include "../inc/alu.sv"
 
-module alu
-	import alu_pkg::*;
-	#(
+module alu #(
 	parameter BITWIDTH = 8
 	)(
 	input logic [BITWIDTH-1:0] opA,
 	input logic [BITWIDTH-1:0] opB,
-	input ALUop_t ALUop,
+	input logic [4:0] ALUop,
 	output logic [BITWIDTH-1:0] ALUout,
-	output flags_t ALUflags
+	output logic overflowFlag,
+	output logic zeroFlag,
+	output logic signFlag
 	);
 
 	always_comb begin
 		case (ALUop)
-			ADD:
-				begin
-						ALUout = opA + opB;
-						ALUflags.overflowFlag = ((opA[BITWIDTH-1] & opB[BITWIDTH-1]) ^ ALUflags.signFlag);
-				end
-			SUBAB:
-				begin
-						ALUout = opA - opB;
-						ALUflags.overflowFlag = (((~opA[BITWIDTH-1] & opB[BITWIDTH-1]) & ALUflags.signFlag) | ((opA[BITWIDTH-1] & ~opB[BITWIDTH-1]) & ~ALUflags.signFlag));
-				end
-			SUBBA:
-				begin
-						ALUout = opB - opA;
-						ALUflags.overflowFlag = (((~opA[BITWIDTH-1] & opB[BITWIDTH-1]) & ~ALUflags.signFlag) | ((opA[BITWIDTH-1] & ~opB[BITWIDTH-1]) & ALUflags.signFlag));
-				end
-			MODAB:		ALUout = opA % opB;
-			MODBA:		ALUout = opB % opA;
-			NEGA:		ALUout = ~opA + 'd1;
-			NEGB:		ALUout = ~opB + 'd1;
-			INCA:		ALUout = opA + 'd1;
-			INCB:		ALUout = opB + 'd1;
-			DECA:		ALUout = opA - 'd1;
-			DECB:		ALUout = opB - 'd1;
-			PTA:		ALUout = opA;
-			PTB:		ALUout = opB;
-			SHLA:		ALUout = opA << 1;
-			SHRA:		ALUout = opA >> 1;
-			SHLA2:		ALUout = opA << 2;
-			SHRA2:		ALUout = opA >> 2;
-			SHLA3:		ALUout = opA << 3;
-			SHRA3:		ALUout = opA >> 3;
-			SHLA4:		ALUout = opA << 4;
-			SHRA4:		ALUout = opA >> 4;
-			RORA:		ALUout = {opA[0], opA[BITWIDTH-1:1]};
-			ROLA:		ALUout = {opA[BITWIDTH-2:0], opA[BITWIDTH-1]};
-			AND:		ALUout = opA & opB;
-			OR:			ALUout = opA | opB;
-			NAND:		ALUout = ~(opA & opB);
-			NOR:		ALUout = ~(opA | opB);
-			XOR:		ALUout = opA ^ opB;
-			XNOR:		ALUout = ~(opA ^ opB);
-			INVA:		ALUout = ~opA;
-			INVB:		ALUout = ~opB;
+			`ADD:		ALUout = opA + opB;
+			`SUB:		ALUout = opA - opB;
+			`MOD:		ALUout = opA % opB;
+			`NEGA:		ALUout = ~opA + 'd1;
+			`INCA:		ALUout = opA + 'd1;
+			`DECA:		ALUout = opA - 'd1;
+			`PTA:		ALUout = opA;
+			`SHLA:		ALUout = opA << 1;
+			`SHLA2:		ALUout = opA << 2;
+			`SHLA3:		ALUout = opA << 3;
+			`SHLA4:		ALUout = opA << 4;
+			`SHLA5:		ALUout = opA << 5;
+			`SHLA6:		ALUout = opA << 6;
+			`SHLA7:		ALUout = opA << 7;
+			`SHLA8:		ALUout = opA << 8;
+			`SHRA:		ALUout = opA >> 1;
+			`SHRA2:		ALUout = opA >> 2;
+			`SHRA3:		ALUout = opA >> 3;
+			`SHRA4:		ALUout = opA >> 4;
+			`SHRA5:		ALUout = opA >> 5;
+			`SHRA6:		ALUout = opA >> 6;
+			`SHRA7:		ALUout = opA >> 7;
+			`SHRA8:		ALUout = opA >> 8;
+			`ROLA:		ALUout = {opA[BITWIDTH-2:0], opA[BITWIDTH-1]};
+			`RORA:		ALUout = {opA[0], opA[BITWIDTH-1:1]};
+			`AND:		ALUout = opA & opB;
+			`OR:		ALUout = opA | opB;
+			`NAND:		ALUout = ~(opA & opB);
+			`NOR:		ALUout = ~(opA | opB);
+			`XOR:		ALUout = opA ^ opB;
+			`XNOR:		ALUout = ~(opA ^ opB);
+			`INVA:		ALUout = ~opA;
 			default: 	ALUout = {BITWIDTH{1'b0}};
 		endcase
-		ALUflags.zeroFlag = (ALUout == {BITWIDTH{1'b0}});
-		ALUflags.signFlag = ALUout[BITWIDTH-1];
+		zeroFlag = (ALUout == {BITWIDTH{1'b0}});
+		signFlag = ALUout[BITWIDTH-1];
+		overflowFlag = (((ALUop ==  `ADD) && (opA[BITWIDTH-1] && opB[BITWIDTH-1] && signFlag)) || ((ALUop == `SUB) && (opA[BITWIDTH-1] && opB[BITWIDTH-1] && ~signFlag)) || ((ALUop == `INCA) && zeroFlag) || ((ALUop == `DECA) && (ALUout == {BITWIDTH{1'b1}})));
 	end
 endmodule
