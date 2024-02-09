@@ -22,6 +22,7 @@ Modules under development:
 - [lifo](https://github.com/Bubi2001/rtl_utils/tree/module/lifo): LIFO memory buffer.
 - [one_wire](https://github.com/Bubi2001/rtl_utils/tree/module/one_wire): One-Wire master and slave module.
 - [parity](https://github.com/Bubi2001/rtl_utils/tree/module/parity): Simple parity calculation and checking.
+- [pid](https://github.com/Bubi2001/rtl_utils/tree/module/pid): PID controller.
 - [pwm](https://github.com/Bubi2001/rtl_utils/tree/module/pwm): PWM controller.
 - [register_file](https://github.com/Bubi2001/rtl_utils/tree/module/register_file): Simple Register Bank.
 - [simple_risc_processor](https://github.com/Bubi2001/rtl_utils/tree/module/simple_risc_processor): Simple RISC-like processing unit.
