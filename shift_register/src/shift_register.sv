@@ -44,7 +44,7 @@ module shift_register
 
     logic [SIZE-1:0] dataFF;
 
-	always_ff @(posedge clk) begin
+	always_ff @(posedge clk or negedge rst_n) begin
 		if (!rst_n) begin
 			dataFF <= {SIZE{1'b0}};
 		end else begin
